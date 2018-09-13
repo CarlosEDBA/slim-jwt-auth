@@ -19,21 +19,6 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-      {
-        "type": "package",
-        "package": {
-          "name": "CarlosEDBA/slim-jwt-auth",
-          "version": "3.x",
-          "type": "package",
-          "source": {
-              "url": "git@github.com:CarlosEDBA/slim-jwt-auth.git",
-              "type": "git",
-              "reference": "master"
-          }
-        }
-      }
-    ],
     "require": {
         "php" : "^7.1",
         "psr/log": "^1.0",
@@ -42,8 +27,7 @@
         "tuupola/http-factory": "^0.4.0",
         "tuupola/callable-handler": "^0.3.0|^0.4.0",
         "psr/http-server-middleware": "^1.0",
-        "lcobucci/jwt": "^3.2",
-        "CarlosEDBA/slim-jwt-auth": "*"
+        "lcobucci/jwt": "^3.2"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.3",
@@ -62,11 +46,6 @@
     "autoload-dev": {
         "psr-4": {
             "Tuupola\\Middleware\\": "tests"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-3.x": "3.0.x-dev"
         }
     }
 }
