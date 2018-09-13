@@ -588,37 +588,37 @@ final class JwtAuthentication implements MiddlewareInterface
           if (!empty($value)) {
             $builder->setIssuer($value);
           }
-          break
+          break;
         case 'sub':
-          break
+          break;
         case 'exp':
           if (!empty($value)) {
             $builder->setExpiration($value);
           } else {
             $builder->setExpiration(time() + (7 * 24 * 60 * 60));
           }
-          break
+          break;
         case 'nbf':
           if (!empty($value)) {
             $builder->setNotBefore($value);
           } else {
             $builder->setNotBefore(time() + 10);
           }
-          break
+          break;
         case 'iat':
           if (!empty($value)) {
             $builder->setIssuedAt($value);
           } else {
             $builder->setIssuedAt(time());
           }
-          break
+          break;
         case 'jti':
           if (!empty($value)) {
             $builder->setId($value, true);
           } else {
             $builder->setId(IdGenerator::uniqueId(), true);
           }
-          break
+          break;
       }
     }
 
