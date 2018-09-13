@@ -623,8 +623,8 @@ final class JwtAuthentication implements MiddlewareInterface
     }
 
     if (count($payload)) {
-      foreach ($payload as $key => $value) {
-        $builder->set($key, $value);
+      foreach ($payload as $payloadKey => $value) {
+        $builder->set($payloadKey, $value);
       }
     }
         
