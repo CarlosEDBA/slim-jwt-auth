@@ -134,7 +134,7 @@ final class JwtAuthentication implements MiddlewareInterface
     /* If token cannot be found or decoded return with 401 Unauthorized. */
     try {
       $token = $this->fetchToken($request);
-      //$decoded = $this->decodeToken($token);
+      $decoded = $this->decodeToken($token);
     } catch (RuntimeException | DomainException $exception) {
       $response = (new ResponseFactory)->createResponse(401);
       return $this->processError($response, [
@@ -261,19 +261,13 @@ final class JwtAuthentication implements MiddlewareInterface
   /**
    * Decode the token.
    */
-  private function decodeToken(string $token): array
+  private function decodeToken(string $token)
   {
-    try {
-      $decoded = JWT::decode(
-        $token,
-        $this->options["secret"],
-        (array) $this->options["algorithm"]
-      );
-      return (array) $decoded;
-    } catch (Exception $exception) {
-      $this->log(LogLevel::WARNING, $exception->getMessage(), [$token]);
-      throw $exception;
-    }
+    $signature = $this->options["signature"];
+    $algorithm = $this->options["algorithm"];
+    $key = $this->options["key"];
+    
+    return self::verify($signature, $algorithm, $key, $token);
   }
 
   /**
@@ -399,7 +393,7 @@ final class JwtAuthentication implements MiddlewareInterface
    */
   private function algorithm($algorithm): void
   {
-    $this->options["algorithm"] = (array) $algorithm;
+    $this->options["algorithm"] = $algorithm;
   }
 
   /**
